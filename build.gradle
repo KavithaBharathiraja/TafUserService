@@ -26,7 +26,6 @@ bootJar {
 	archiveFileName = 'user.jar'
 }
 dependencies {
-
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -34,7 +33,15 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'  // Jakarta Persistence API
+
+	// Add Spring Security dependency
+
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
+	// Spring Security for BCryptPasswordEncoder
 }
+
 
 tasks.named('test') {
 	useJUnitPlatform()

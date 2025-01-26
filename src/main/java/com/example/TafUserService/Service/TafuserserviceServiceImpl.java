@@ -13,22 +13,22 @@ import java.util.List;
 public class TafuserserviceServiceImpl implements TafuserserviceService {
 
     @Autowired
-    private RestTemplate restTemplate;  // Used for calling the external service
+    private RestTemplate restTemplate;
 
-    private static final String BASE_URL = "http://localhost:8080/datastore/users";  // URL for Datastore service
+    private static final String BASE_URL = "http://localhost:8080/datastore/users";
 
     @Override
     public User RegisterUser(User user) {
         // Send a POST request to TafDatastoreService to create a new user
         ResponseEntity<User> response = restTemplate.postForEntity(BASE_URL, user, User.class);
-        return response.getBody();  // Return the created user
+        return response.getBody();
     }
 
     @Override
     public List<User> getAllUsers() {
         // Send a GET request to TafDatastoreService to fetch all users
         ResponseEntity<List> response = restTemplate.exchange(BASE_URL, org.springframework.http.HttpMethod.GET, null, List.class);
-        return response.getBody();  // Return the list of users
+        return response.getBody();
     }
 
     @Override
@@ -36,14 +36,14 @@ public class TafuserserviceServiceImpl implements TafuserserviceService {
         // Send a GET request to TafDatastoreService to fetch a user by ID
         String url = BASE_URL + "/" + userId;
         ResponseEntity<User> response = restTemplate.getForEntity(url, User.class);
-        return response.getBody();  // Return the user if found
+        return response.getBody();
     }
 
     @Override
     public User updateUser(Long userId, User user) {
         // Send a PUT request to TafDatastoreService to update the user by ID
         String url = BASE_URL + "/" + userId;
-        restTemplate.put(url, user);  // No response expected, just update the user
-        return user;  // Return the updated user (or handle as necessary)
+        restTemplate.put(url, user);
+        return user;
     }
 }
